@@ -71,12 +71,14 @@ public class JobData {
         loadData();
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+        String term = value.toLowerCase();
 
         for (HashMap<String, String> row : allJobs) {
 
             String aValue = row.get(column);
+            aValue = aValue.toLowerCase();
 
-            if (aValue.contains(value)) {
+            if (aValue.contains(term)) {
                 jobs.add(row);
             }
         }
@@ -97,7 +99,6 @@ public class JobData {
     public static ArrayList<HashMap<String, String>> findByValue(String search_term)
     {
         String value;
-        int count = 0;
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
         // load data, if not already loaded
@@ -110,18 +111,15 @@ public class JobData {
             {
                 value = row.get(heading).toLowerCase();
 
-                /** If the search term is found in the column, add the job to the results list,
+                /* If the search term is found in the column, add the job to the results list,
                 then go the next job in the file. */
                 if (value.contains(term))
                 {
                     jobs.add(row);
-                    count += 1;
                     break;
                 }
             }
         }
-
-        System.out.println("There are " + count + " results");
         return jobs;
     }
 
