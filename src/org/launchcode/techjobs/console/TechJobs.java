@@ -113,12 +113,12 @@ public class TechJobs {
 
         if (someJobs.size() > 0)
         {
-            //int pos_num = 0;
+            int pos_num = 0;
 
             for (HashMap<String, String> row : someJobs)
             {
-                //pos_num += 1;
-                //System.out.println("Position #: " + pos_num);
+                pos_num += 1;
+                System.out.println("Position #: " + pos_num);
                 System.out.println("*****");
                 for (String heading : row.keySet())
                 {
@@ -126,6 +126,8 @@ public class TechJobs {
                 }
                 System.out.println("*****\n");
             }
+
+            System.out.println(pos_num + " positions were found");
         }
         else
         {
