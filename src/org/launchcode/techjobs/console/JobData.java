@@ -34,12 +34,27 @@ public class JobData {
         loadData();
 
         ArrayList<String> values = new ArrayList<>();
+        boolean entry_sorted;
 
         for (HashMap<String, String> row : allJobs) {
             String aValue = row.get(field);
 
             if (!values.contains(aValue)) {
-                values.add(aValue);
+                entry_sorted = false;
+                for (int i=0; i < values.size(); i++)
+                {
+                    if(aValue.compareTo(values.get(i)) < 0)
+                    {
+                        values.add(i, aValue);
+                        entry_sorted = true;
+                        break;
+                    }
+                }
+
+                if (!entry_sorted)
+                {
+                    values.add(aValue);
+                }
             }
         }
 
@@ -51,7 +66,9 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
-        return allJobs;
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>(allJobs);
+
+        return jobs;
     }
 
     /**
